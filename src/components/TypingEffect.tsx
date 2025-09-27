@@ -12,24 +12,34 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", spe
   const [displayedText, setDisplayedText] = useState<string>("");
 
   useEffect(() => {
-    let index = 0;
+    // Reset displayed text when component mounts or props change
+    setDisplayedText("");
+    
+    let typingInterval: NodeJS.Timeout;
+    
     const typingTimeout = setTimeout(() => {
-      const typingInterval = setInterval(() => {
-        setDisplayedText((prevText) => prevText + text.charAt(index)); // Use charAt() to safely access characters
-        index += 1;
-
-        if (index === text.length) {
-          clearInterval(typingInterval); // Stop once full text is typed
-        }
+      typingInterval = setInterval(() => {
+        setDisplayedText((prevText) => {
+          const newIndex = prevText.length;
+          if (newIndex < text.length) {
+            return text.substring(0, newIndex + 1);
+          }
+          clearInterval(typingInterval);
+          return prevText;
+        });
       }, speed);
-
-      return () => clearInterval(typingInterval); // Cleanup on component unmount
     }, delay);
 
-    return () => clearTimeout(typingTimeout); // Cleanup on component unmount
+    // Cleanup function
+    return () => {
+      clearTimeout(typingTimeout);
+      if (typingInterval) {
+        clearInterval(typingInterval);
+      }
+    };
   }, [text, speed, delay]);
 
-  return <div className="text-center">{initialText} {displayedText}</div>;
+  return <div className="text-center sm:text-left">{initialText}{displayedText}</div>;
 };
 
 export default TypingEffect;
