@@ -6,9 +6,11 @@ interface TypingEffectProps {
   initialText?: string
   speed?: number; // Optional prop for typing speed
   delay?: number;
+  as?: 'div' | 'span' | 'p' | 'h1' | 'h2' | 'h3';
+  className?: string;
 }
 
-const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", speed = 100, delay = 0 }) => {
+const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", speed = 100, delay = 0, as = 'div', className = '' }) => {
   const [displayedText, setDisplayedText] = useState<string>("");
 
   useEffect(() => {
@@ -39,7 +41,8 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", spe
     };
   }, [text, speed, delay]);
 
-  return <div className="text-center sm:text-left">{initialText}{displayedText}</div>;
+  const ComponentTag: any = as;
+  return <ComponentTag className={(className ? className + ' ' : '') + "text-center sm:text-left"}>{initialText}{displayedText}</ComponentTag>;
 };
 
 export default TypingEffect;

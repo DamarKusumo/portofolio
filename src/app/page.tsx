@@ -1,9 +1,51 @@
 import { Hero, About, Skills } from "@/components/sections";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import Script from "next/script";
+import { absoluteUrl, SITE_NAME } from "@/lib/seo";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
+      {/* JSON-LD: Person */}
+      <Script id="ld-person" type="application/ld+json" strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: SITE_NAME,
+            alternateName: ["Damar", "Damar Kusumo"],
+            url: absoluteUrl('/'),
+            image: absoluteUrl('/ava_no_bg.png'),
+            jobTitle: "Google Certified Associate Cloud Engineer, Full-Stack Developer",
+            sameAs: [
+              "https://www.linkedin.com/in/muhammad-damar-kusumo/",
+              "https://github.com/DamarKusumo",
+              "https://www.instagram.com/damar_kusumo"
+            ],
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Jakarta",
+              addressCountry: "ID"
+            }
+          })
+        }}
+      />
+      {/* JSON-LD: WebSite with potentialAction for sitelinks search box */}
+      <Script id="ld-website" type="application/ld+json" strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: SITE_NAME,
+            url: absoluteUrl('/'),
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${absoluteUrl('/')}?q={search_term_string}`,
+              "query-input": "required name=search_term_string"
+            }
+          })
+        }}
+      />
       <Hero />
       <About />
       <Skills />

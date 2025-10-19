@@ -42,6 +42,8 @@ export const Hero = () => {
               className="space-y-3"
             >
               <TypingEffect
+                as="h1"
+                className="text-3xl sm:text-5xl font-extrabold tracking-tight"
                 initialText="Hi, I'm"
                 text=" Muhammad Damar Kusumo"
                 speed={80}
