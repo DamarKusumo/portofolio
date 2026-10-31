@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Section } from '@/components/ui';
-import { FaGraduationCap, FaAward, FaCode, FaRocket } from 'react-icons/fa';
+import { FaGraduationCap, FaAward, FaCode } from 'react-icons/fa';
 
 export const About = () => {
   const achievements = [
@@ -23,12 +23,6 @@ export const About = () => {
       title: 'Team Leader at Andal Software',
       description: 'Promoted to lead HRIS modernization after 3-month probation',
       period: 'Jul 2024-Present'
-    },
-    {
-      icon: <FaRocket className="w-6 h-6" />,
-      title: 'Co-Founder Connextion Indonesia',
-      description: 'AI-powered talent platform connecting businesses with IT professionals',
-      period: 'Sep 2024-Present'
     }
   ];
 
@@ -76,9 +70,9 @@ export const About = () => {
                 technologies and scalable system architectures.
               </p>
               <p>
-                Today, I balance my role as a <strong>Team Leader</strong> at Andal Software with 
-                co-founding Connextion Indonesia, an AI-powered platform that&apos;s revolutionizing 
-                how businesses connect with IT talent.
+                Today, I focus on my role as a <strong>Team Leader</strong> at Andal Software,
+                driving the modernization of cloud-native HRIS platforms and scalable solutions
+                for the business.
               </p>
               <p>
                 I&apos;m driven by the challenge of transforming complex business requirements into 

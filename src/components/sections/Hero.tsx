@@ -79,22 +79,13 @@ export const Hero = () => {
                 className="text-base sm:text-lg text-gray-600 dark:text-gray-300"
               >
                 Currently building modern HRIS platforms at{' '}
-                <a 
-                  href="https://andalsoftware.com/" 
-                  target="_blank" 
+                <a
+                  href="https://andalsoftware.com/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="font-bold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
                 >
                   Andal Software
-                </a>{' '}
-                and co-founding AI-powered talent platform{' '}
-                <a 
-                  href="https://www.connextion.tech/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="font-bold text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 transition-colors"
-                >
-                  Connextion Indonesia
                 </a>.
               </motion.div>
             </motion.div>
