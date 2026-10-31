@@ -12,11 +12,17 @@ interface TypingEffectProps {
 
 const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", speed = 100, delay = 0, as = 'div', className = '' }) => {
   const [displayedText, setDisplayedText] = useState<string>("");
+  const [typedSource, setTypedSource] = useState<string>(text);
+
+  // Reset while rendering when `text` changes — React's "adjust some state when
+  // a prop changes" pattern. Doing this inside the effect is rejected by
+  // react-hooks/set-state-in-effect (eslint-plugin-react-hooks@7).
+  if (typedSource !== text) {
+    setTypedSource(text);
+    setDisplayedText("");
+  }
 
   useEffect(() => {
-    // Reset displayed text when component mounts or props change
-    setDisplayedText("");
-    
     let typingInterval: NodeJS.Timeout;
     
     const typingTimeout = setTimeout(() => {
@@ -41,7 +47,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", spe
     };
   }, [text, speed, delay]);
 
-  const ComponentTag: any = as;
+  const ComponentTag: React.ElementType = as;
   return <ComponentTag className={(className ? className + ' ' : '') + "text-center sm:text-left"}>{initialText}{displayedText}</ComponentTag>;
 };
 
