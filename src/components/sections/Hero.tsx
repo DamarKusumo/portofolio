@@ -145,7 +145,22 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 2 }}
               className="pt-4 text-sm text-gray-500 dark:text-gray-400"
             >
-              📍 Jakarta, Indonesia • 📧 muhammaddamarkusumo@gmail.com • 📱 +6285664545159
+              📍 Jakarta, Indonesia •{' '}
+              <a
+                href="mailto:muhammaddamarkusumo@gmail.com"
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                📧 muhammaddamarkusumo@gmail.com
+              </a>{' '}
+              •{' '}
+              <a
+                href="https://wa.me/6285664545159"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-600 dark:hover:text-green-400 transition-colors"
+              >
+                📱 +6285664545159
+              </a>
             </motion.div>
           </div>
         </motion.div>
