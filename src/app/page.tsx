@@ -1,4 +1,4 @@
-import { Hero, About, Skills } from "@/components/sections";
+import { Hero, About, Skills, Projects } from "@/components/sections";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import Script from "next/script";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
@@ -49,7 +49,8 @@ export default function Home() {
       <Hero />
       <About />
       <Skills />
-      
+      <Projects />
+
       <footer className="w-full py-6 mt-auto">
         <div className="flex gap-4 sm:gap-6 flex-wrap items-center justify-center">
           <a
