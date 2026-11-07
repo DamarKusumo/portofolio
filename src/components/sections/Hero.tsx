@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import Image from "next/image";
 import { Button } from '@/components/ui';
 import TypingEffect from '@/components/TypingEffect';
+import { useLang } from '@/lib/i18n';
 
 export const Hero = () => {
+  const { t } = useLang();
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-8 sm:px-8 lg:px-20">
       <div className="w-full max-w-6xl">
@@ -44,7 +46,7 @@ export const Hero = () => {
               <TypingEffect
                 as="h1"
                 className="text-3xl sm:text-5xl font-extrabold tracking-tight"
-                initialText="Hi, I'm"
+                initialText={t.hero.greeting}
                 text=" Muhammad Damar Kusumo"
                 speed={80}
                 delay={500}
@@ -67,26 +69,18 @@ export const Hero = () => {
               className="space-y-4"
             >
               <TypingEffect
-                text="Full-Stack Developer & Software Engineer with entrepreneurial mindset. Graduate from Universitas Indonesia (Cumlaude, 3.71/4.00) specializing in cloud-native solutions and scalable applications."
+                text={t.hero.summary}
                 speed={25}
                 delay={4000}
               />
-              
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 10 }}
                 className="text-base sm:text-lg text-gray-600 dark:text-gray-300"
               >
-                Currently building modern HRIS platforms at{' '}
-                <a
-                  href="https://andalsoftware.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
-                >
-                  Andal Software
-                </a>.
+                {t.hero.currently}
               </motion.div>
             </motion.div>
 
@@ -99,15 +93,15 @@ export const Hero = () => {
             >
               <div className="text-center lg:text-left">
                 <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">3+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-300">Years Experience</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">{t.hero.years}</div>
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400">GCP</div>
-                <div className="text-sm text-gray-600 dark:text-gray-300">Certified Engineer</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">{t.hero.certified}</div>
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">UI</div>
-                <div className="text-sm text-gray-600 dark:text-gray-300">Graduate</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">{t.hero.graduate}</div>
               </div>
             </motion.div>
 
@@ -124,7 +118,7 @@ export const Hero = () => {
                 href="mailto:muhammaddamarkusumo@gmail.com"
                 className="w-full sm:w-auto"
               >
-                Let&apos;s Work Together
+                {t.hero.ctaPrimary}
               </Button>
               <Button
                 variant="outline"
@@ -134,7 +128,7 @@ export const Hero = () => {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
               >
-                View Full Profile
+                {t.hero.ctaSecondary}
               </Button>
             </motion.div>
 

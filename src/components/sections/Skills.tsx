@@ -24,11 +24,13 @@ import {
   SiFlutter,
   SiSelenium
 } from 'react-icons/si';
+import { useLang } from '@/lib/i18n';
 
 export const Skills = () => {
+  const { t } = useLang();
   const skillCategories = [
     {
-      title: 'Frontend Development',
+      title: t.skills.categories.frontend,
       icon: <FaReact className="w-6 h-6" />,
       color: 'blue',
       skills: [
@@ -39,7 +41,7 @@ export const Skills = () => {
       ]
     },
     {
-      title: 'Backend Development',
+      title: t.skills.categories.backend,
       icon: <FaNodeJs className="w-6 h-6" />,
       color: 'green',
       skills: [
@@ -50,7 +52,7 @@ export const Skills = () => {
       ]
     },
     {
-      title: 'Cloud & DevOps',
+      title: t.skills.categories.cloud,
       icon: <FaCloud className="w-6 h-6" />,
       color: 'purple',
       skills: [
@@ -61,7 +63,7 @@ export const Skills = () => {
       ]
     },
     {
-      title: 'Database & Tools',
+      title: t.skills.categories.database,
       icon: <FaDatabase className="w-6 h-6" />,
       color: 'orange',
       skills: [
@@ -93,11 +95,10 @@ export const Skills = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Technical Skills
+            {t.skills.heading}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Comprehensive expertise across the full technology stack, from frontend frameworks 
-            to cloud infrastructure and everything in between.
+            {t.skills.subtitle}
           </p>
         </motion.div>
       </div>

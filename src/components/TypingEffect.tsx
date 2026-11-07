@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface TypingEffectProps {
   text: string;
@@ -13,6 +13,7 @@ interface TypingEffectProps {
 const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", speed = 100, delay = 0, as = 'div', className = '' }) => {
   const [displayedText, setDisplayedText] = useState<string>("");
   const [typedSource, setTypedSource] = useState<string>(text);
+  const firstRun = useRef(true);
 
   // Reset while rendering when `text` changes — React's "adjust some state when
   // a prop changes" pattern. Doing this inside the effect is rejected by
@@ -24,7 +25,11 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", spe
 
   useEffect(() => {
     let typingInterval: NodeJS.Timeout;
-    
+
+    // Delay only on first mount; re-typed text (e.g. language switch) starts immediately.
+    const initialDelay = firstRun.current ? delay : 0;
+    firstRun.current = false;
+
     const typingTimeout = setTimeout(() => {
       typingInterval = setInterval(() => {
         setDisplayedText((prevText) => {
@@ -36,7 +41,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, initialText = "", spe
           return prevText;
         });
       }, speed);
-    }, delay);
+    }, initialDelay);
 
     // Cleanup function
     return () => {

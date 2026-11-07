@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Section } from '@/components/ui';
+import { useLang } from '@/lib/i18n';
 
 interface Project {
   title: string;
@@ -12,19 +13,6 @@ interface Project {
   image: string;
   color: 'blue' | 'green' | 'purple' | 'orange';
 }
-
-// To add a new project, append an object to this array — the grid adapts automatically.
-const projects: Project[] = [
-  {
-    title: 'Money Guard',
-    description:
-      'Mobile-first PWA that checks any purchase against your budget before you buy — giving a clear AMAN, HATI-HATI, or JANGAN DULU verdict. No login, no backend, works offline, and data stays on your device.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PWA'],
-    url: 'https://money-guard.mudaku.my.id/',
-    image: '/projects/money-guard.png',
-    color: 'green',
-  },
-];
 
 const getColorClasses = (color: Project['color']) => {
   const colors = {
@@ -37,6 +25,20 @@ const getColorClasses = (color: Project['color']) => {
 };
 
 export const Projects = () => {
+  const { t } = useLang();
+
+  // To add a new project, append an object to this array — the grid adapts automatically.
+  const projects: Project[] = [
+    {
+      title: 'Money Guard',
+      description: t.projects.moneyGuard,
+      tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PWA'],
+      url: 'https://money-guard.mudaku.my.id/',
+      image: '/projects/money-guard.png',
+      color: 'green',
+    },
+  ];
+
   return (
     <Section id="projects" className="bg-gray-50 dark:bg-gray-900">
       <div className="text-center mb-16">
@@ -47,11 +49,10 @@ export const Projects = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Projects
+            {t.projects.heading}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A selection of things I&apos;ve designed and built — real-world tools with
-            real users.
+            {t.projects.subtitle}
           </p>
         </motion.div>
       </div>
@@ -96,7 +97,7 @@ export const Projects = () => {
                 ))}
               </div>
               <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-                Visit site{' '}
+                {t.projects.visit}{' '}
                 <span className="inline-block transition-transform group-hover:translate-x-1">
                   →
                 </span>

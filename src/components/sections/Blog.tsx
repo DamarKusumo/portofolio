@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { Section } from '@/components/ui';
 import { BLOG_URL, type FeedPost } from '@/lib/feed';
+import { useLang } from '@/lib/i18n';
 
 export const Blog = ({ posts }: { posts: FeedPost[] }) => {
+  const { t } = useLang();
   return (
     <Section id="blog">
       <div className="text-center mb-16">
@@ -15,17 +17,17 @@ export const Blog = ({ posts }: { posts: FeedPost[] }) => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Blog
+            {t.blog.heading}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Latest writing — tools, cloud, and things I learn along the way.{' '}
+            {t.blog.subtitleLead}{' '}
             <a
               href={BLOG_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
             >
-              Read all →
+              {t.blog.readAll}
             </a>
           </p>
         </motion.div>
@@ -54,7 +56,7 @@ export const Blog = ({ posts }: { posts: FeedPost[] }) => {
               {post.description}
             </p>
             <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-              Read post{' '}
+              {t.blog.readPost}{' '}
               <span className="inline-block transition-transform group-hover:translate-x-1">
                 →
               </span>
@@ -71,7 +73,7 @@ export const Blog = ({ posts }: { posts: FeedPost[] }) => {
             rel="noopener noreferrer"
             className="font-medium text-blue-600 dark:text-blue-400 hover:underline"
           >
-            Visit the blog →
+            {t.blog.visitBlog}
           </a>
         </p>
       )}

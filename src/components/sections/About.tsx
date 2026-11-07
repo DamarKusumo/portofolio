@@ -3,28 +3,20 @@
 import { motion } from 'framer-motion';
 import { Section } from '@/components/ui';
 import { FaGraduationCap, FaAward, FaCode } from 'react-icons/fa';
+import { useLang } from '@/lib/i18n';
+
+const achievementIcons = [
+  <FaGraduationCap key="cap" className="w-6 h-6" />,
+  <FaAward key="award" className="w-6 h-6" />,
+  <FaCode key="code" className="w-6 h-6" />,
+];
 
 export const About = () => {
-  const achievements = [
-    {
-      icon: <FaGraduationCap className="w-6 h-6" />,
-      title: 'Cumlaude Graduate',
-      description: 'Universitas Indonesia - Sistem Informasi (IPK: 3.71/4.00)',
-      period: '2020-2024'
-    },
-    {
-      icon: <FaAward className="w-6 h-6" />,
-      title: 'Google Cloud Certified',
-      description: 'Associate Cloud Engineer - Bangkit Academy Graduate',
-      period: 'Feb-Jul 2023'
-    },
-    {
-      icon: <FaCode className="w-6 h-6" />,
-      title: 'Team Leader at Andal Software',
-      description: 'Promoted to lead HRIS modernization after 3-month probation',
-      period: 'Jul 2024-Present'
-    }
-  ];
+  const { t } = useLang();
+  const achievements = t.about.achievements.map((achievement, index) => ({
+    icon: achievementIcons[index],
+    ...achievement,
+  }));
 
   return (
     <Section id="about" className="bg-gray-50 dark:bg-gray-900">
@@ -36,11 +28,10 @@ export const About = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            About Me
+            {t.about.heading}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A passionate software engineer with entrepreneurial spirit and proven track record 
-            in building scalable applications and leading technical teams.
+            {t.about.subtitle}
           </p>
         </motion.div>
       </div>
@@ -56,40 +47,24 @@ export const About = () => {
         >
           <div>
             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-              My Journey
+              {t.about.journey}
             </h3>
             <div className="space-y-4 text-gray-600 dark:text-gray-300">
-              <p>
-                Born and raised in Jakarta, I discovered my passion for technology during my studies 
-                at <strong>Universitas Indonesia</strong>, where I graduated Cumlaude with a degree 
-                in Information Systems.
-              </p>
-              <p>
-                My breakthrough came through <strong>Bangkit Academy&apos;s Cloud Computing Cohort</strong>, 
-                where I earned my Google Cloud certification and gained deep expertise in advanced cloud 
-                technologies and scalable system architectures.
-              </p>
-              <p>
-                Today, I focus on my role as a <strong>Team Leader</strong> at Andal Software,
-                driving the modernization of cloud-native HRIS platforms and scalable solutions
-                for the business.
-              </p>
-              <p>
-                I&apos;m driven by the challenge of transforming complex business requirements into 
-                elegant, scalable solutions that make a real impact.
-              </p>
+              <p>{t.about.journeyP1}</p>
+              <p>{t.about.journeyP2}</p>
+              <p>{t.about.journeyP3}</p>
+              <p>{t.about.journeyP4}</p>
             </div>
           </div>
 
           <div className="pt-4">
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-              Fun Facts About Me
+              {t.about.funFacts}
             </h4>
             <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-              <li>🏍️ Daily commuter from Tangerang to Jakarta (building resilience one ride at a time!)</li>
-              <li>🎓 Thesis focused on Supply Chain Management Software Product Lines</li>
-              <li>🌟 Passionate about open-source solutions that drive cost-efficiency</li>
-              <li>🤝 Strong believer in mentoring and knowledge sharing</li>
+              {t.about.facts.map((fact) => (
+                <li key={fact}>{fact}</li>
+              ))}
             </ul>
           </div>
         </motion.div>
@@ -103,7 +78,7 @@ export const About = () => {
           className="space-y-6"
         >
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-            Key Achievements
+            {t.about.achievementsHeading}
           </h3>
           
           <div className="space-y-6">
