@@ -1,9 +1,11 @@
-import { Hero, About, Skills, Projects } from "@/components/sections";
+import { Hero, About, Skills, Projects, Blog } from "@/components/sections";
+import { fetchLatestPosts } from "@/lib/feed";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import Script from "next/script";
 import { absoluteUrl, SITE_NAME } from "@/lib/seo";
 
-export default function Home() {
+export default async function Home() {
+  const blogPosts = await fetchLatestPosts();
   return (
     <div className="min-h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
       {/* JSON-LD: Person */}
@@ -50,6 +52,7 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <Blog posts={blogPosts} />
 
       <footer className="w-full py-6 mt-auto">
         <div className="flex gap-4 sm:gap-6 flex-wrap items-center justify-center">

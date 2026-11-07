@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --experimental-strip-types --test src/proxy.test.ts"
+    "test": "node --experimental-strip-types --test src/proxy.test.ts src/feed.test.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
