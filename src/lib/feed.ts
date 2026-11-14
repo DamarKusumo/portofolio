@@ -39,12 +39,20 @@ export function parseFeed(xml: string, limit = 3): FeedPost[] {
 }
 
 // Cached an hour by Next; if the blog is down we degrade to "Read all" only.
+// Failures are logged: the silent catch hid a build-time fetch bug for a week.
 export async function fetchLatestPosts(limit = 3): Promise<FeedPost[]> {
   try {
     const res = await fetch(`${BLOG_URL}/rss.xml`, { next: { revalidate: 3600 } });
-    if (!res.ok) return [];
+    if (!res.ok) {
+      console.warn(`[feed] rss.xml responded ${res.status} ${res.statusText}`);
+      return [];
+    }
     return parseFeed(await res.text(), limit);
-  } catch {
+  } catch (err) {
+    console.warn(
+      '[feed] fetch failed:',
+      err instanceof Error ? `${err.name}: ${err.message}` : err
+    );
     return [];
   }
 }
