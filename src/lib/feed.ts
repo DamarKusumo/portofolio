@@ -42,9 +42,20 @@ export function parseFeed(xml: string, limit = 3): FeedPost[] {
 // Failures are logged: the silent catch hid a build-time fetch bug for a week.
 export async function fetchLatestPosts(limit = 3): Promise<FeedPost[]> {
   try {
-    const res = await fetch(`${BLOG_URL}/rss.xml`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${BLOG_URL}/rss.xml`, {
+      next: { revalidate: 3600 },
+      // Cloudflare edge-blocks the default undici UA with 403; browser UA passes.
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (compatible; portfolio-rss/1.0; +https://portofolio.mudaku.my.id)',
+      },
+    });
     if (!res.ok) {
-      console.warn(`[feed] rss.xml responded ${res.status} ${res.statusText}`);
+      console.warn(
+        `[feed] rss.xml responded ${res.status} ${res.statusText}` +
+          ` (cf-mitigated=${res.headers.get('cf-mitigated')},` +
+          ` server=${res.headers.get('server')})`
+      );
       return [];
     }
     return parseFeed(await res.text(), limit);
