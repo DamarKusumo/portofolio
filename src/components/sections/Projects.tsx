@@ -37,6 +37,14 @@ export const Projects = () => {
       image: '/projects/money-guard.png',
       color: 'green',
     },
+    {
+      title: 'Retro Minigames',
+      description: t.projects.minigames,
+      tags: ['Vanilla JS', 'PWA', 'HTML/CSS', 'LocalStorage'],
+      url: 'https://minigames.mudaku.my.id/',
+      image: '/projects/minigames.png',
+      color: 'purple',
+    },
   ];
 
   return (

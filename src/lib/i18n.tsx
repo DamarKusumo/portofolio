@@ -114,6 +114,8 @@ const en = {
       "A selection of things I've designed and built — real-world tools with real users.",
     moneyGuard:
       'Mobile-first PWA that checks any purchase against your budget before you buy — giving a clear AMAN, HATI-HATI, or JANGAN DULU verdict. No login, no backend, works offline, and data stays on your device.',
+    minigames:
+      'Five nostalgic solo games — Snake, Sudoku, Bounce, 2048, and Tetris — in a dependency-free vanilla JS PWA with levels, saved high scores, and offline play.',
     visit: 'Visit site',
   },
   blog: {
@@ -232,6 +234,8 @@ const id: typeof en = {
       'Kumpulan hal yang saya rancang dan bangun — alat nyata dengan pengguna nyata.',
     moneyGuard:
       'PWA mobile-first yang mengecek setiap pembelian terhadap anggaran kamu sebelum beli — memberi keputusan AMAN, HATI-HATI, atau JANGAN DULU yang jelas. Tanpa login, tanpa backend, bisa offline, dan data tetap di perangkat kamu.',
+    minigames:
+      'Lima game solo nostalgic — Snake, Sudoku, Bounce, 2048, dan Tetris — dalam PWA vanilla JS tanpa dependensi, lengkap dengan level, skor tertinggi tersimpan, dan mode offline.',
     visit: 'Kunjungi situs',
   },
   blog: {
