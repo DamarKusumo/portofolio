@@ -44,7 +44,8 @@ export async function fetchLatestPosts(limit = 3): Promise<FeedPost[]> {
   try {
     const res = await fetch(`${BLOG_URL}/rss.xml`, {
       next: { revalidate: 3600 },
-      // Cloudflare edge-blocks the default undici UA with 403; browser UA passes.
+      // Identifying UA only — Cloudflare still challenges Vercel egress IPs
+      // (cf-mitigated: challenge); the real fix is a CF skip rule for /rss.xml.
       headers: {
         'User-Agent':
           'Mozilla/5.0 (compatible; portfolio-rss/1.0; +https://portofolio.mudaku.my.id)',
